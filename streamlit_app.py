@@ -9,9 +9,7 @@ import praw
 import streamlit as st
 from dotenv import load_dotenv
 
-# ======================================================
-# Configuração da página
-# ======================================================
+# Config pag
 
 st.set_page_config(
     page_title="Toxicity Analyzer • Reddit",
@@ -20,13 +18,10 @@ st.set_page_config(
     initial_sidebar_state="collapsed"
 )
 
-# CSS com design glassmorphism
+# design css
 st.markdown(f"<style>{open('style.css').read()}</style>", unsafe_allow_html=True)
 
-# ======================================================
-# Função de análise
-# ======================================================
-
+# Função de análise - para mostrar o dash tb
 def analisar_perfil_usuario(username, reddit, model, vectorizer, limite=100):
     def avaliar_toxicidade_local(comentario):
         try:
@@ -129,10 +124,7 @@ def get_classification(percentual):
     else:
         return "Perfil Limpo", "clean"
 
-# ======================================================
 # Inicialização
-# ======================================================
-
 @st.cache_resource
 def init_reddit_and_models():
     load_dotenv()
@@ -155,11 +147,7 @@ def init_reddit_and_models():
 
 reddit, model, vectorizer = init_reddit_and_models()
 
-# ======================================================
 # Interface
-# ======================================================
-
-# Header
 st.markdown("""
 <div class="main-header">
     <h1 class="main-title">TOXICITY ANALYZER</h1>
@@ -216,7 +204,7 @@ if analyze_button and username:
             """, unsafe_allow_html=True)
         
 
-        # Classificação
+        #Classificação
         st.markdown(f"""
         <div class="classification-badge">
             <div class="badge-label {classe}">{classificacao}</div>
@@ -226,7 +214,7 @@ if analyze_button and username:
         </div>
         """, unsafe_allow_html=True)
 
-        # Gráficos
+        #graficos
         st.markdown('<div class="section-divider"></div>', unsafe_allow_html=True)
         st.markdown('<div class="section-title">Visualizações</div>', unsafe_allow_html=True)
         
@@ -289,13 +277,12 @@ if analyze_button and username:
 
         if resultado["atividade"]["comentarios_por_dia"]:
             
-            # Preparar dados para o gráfico de linha
+            #  gráfico de linha
             atividade_df = pd.DataFrame(list(resultado["atividade"]["comentarios_por_dia"].items()), 
                                       columns=["Data", "Comentários"])
             atividade_df["Data"] = pd.to_datetime(atividade_df["Data"])
             atividade_df = atividade_df.sort_values("Data")
             
-            # Criar gráfico de linha
             fig_line = go.Figure()
             
             fig_line.add_trace(go.Scatter(
