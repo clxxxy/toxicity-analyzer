@@ -89,6 +89,18 @@ Este projeto demonstra uma aplicação de análise de toxicidade para perfis do 
 
 ## Como Executar a Aplicação
 
+### Acesso Online
+
+A aplicação está disponível online através do Streamlit Cloud, não sendo necessário executá-la localmente:
+
+**[https://reddit-toxicity-analyzer.streamlit.app/](https://reddit-toxicity-analyzer.streamlit.app/)**
+
+Basta acessar o link acima para utilizar a aplicação diretamente no navegador.
+
+### Execução Local (Opcional)
+
+Caso deseje executar a aplicação localmente:
+
 1. Clone o repositório:
    ```
    git clone https://github.com/seu-usuario/toxicity-analyzer.git
